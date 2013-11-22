@@ -66,8 +66,8 @@ var app = {
 				
 			}).done(function(data) {//success
 
-			var book = JSON.stringify(data)
-            alert(data.volumeInfo.title);
+			var book = {"info": data}
+            alert(book.info.volumeInfo.title);
 			});
 	
 
