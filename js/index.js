@@ -73,7 +73,7 @@ var app = {
        document.getElementById("content").innerHTML = "<br>" 
        + item.volumeInfo.title + "<br>" + item.volumeInfo.authors + 
        " " + "<br>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'> <br>"
-       + item.volumeInfo.description + "<br>"+  item.volumneInfo.publishedDate + "<br>";
+       + item.volumneInfo.publishedDate + "<br>";
   }
 			});
 	
