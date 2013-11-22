@@ -70,8 +70,7 @@ var app = {
           for (var i = 0; i < response.items.length; i++) {
        var item = response.items[i];
        // in production code, item.text should have the HTML entities escaped.
-       document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title + " : " + item.volumeInfo.subtitle
-    + "<br>" + item.volumeInfo.authors + " "
+       document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title +"<br>" + item.volumeInfo.authors + " "
     + "<br>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'> <br>";
   }
 			});
