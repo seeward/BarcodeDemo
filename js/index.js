@@ -67,7 +67,7 @@ var app = {
 			}).done(function(data) {//success
 
 			var book = JSON.stringify(data)
-            alert(book);
+            alert(book.volumeInfo.title);
 			});
 	
 
