@@ -57,11 +57,8 @@ var app = {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan( function (result) { 
-
-            alert("We got a barcode\n" + 
-            "Result: " + result.text + "\n" + 
-            "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  
+            
+            display(result.text);
 
            console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +
@@ -80,6 +77,11 @@ var app = {
         } );
     },
 
+
+    display: function (ISBN){
+        
+        alert(ISBN);
+    }
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
