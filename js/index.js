@@ -57,7 +57,7 @@ var app = {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan( function (result) { 
-            var ISBN = result.yexy;
+            var ISBN = result.text;
             alert("https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN);
 
            console.log("Scanner result: \n" +
