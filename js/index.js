@@ -71,7 +71,7 @@ var app = {
        var item = response.items[i];
        // in production code, item.text should have the HTML entities escaped.
        document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title +"<br>" + item.volumeInfo.authors + " "
-    + "<br>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'> <br>";
+    + "<br>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'> <br>"+item.description+"<br>"+item.publishedDate+"<br>";
   }
 			});
 	
