@@ -66,8 +66,8 @@ var app = {
 				
 			}).done(function(data) {//success
 
-			var book = {"info": data}
-            alert(book.info.volumeInfo.title);
+			
+            alert(data);
 			});
 	
 
