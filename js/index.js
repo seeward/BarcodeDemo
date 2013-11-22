@@ -65,7 +65,7 @@ var app = {
 				dataType : 'json',
 				
 			}).done(function(response) {//success
-
+			$('#content').empty;
 			
           for (var i = 0; i < response.items.length; i++) {
        var item = response.items[i];
