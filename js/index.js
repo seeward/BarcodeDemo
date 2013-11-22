@@ -58,7 +58,18 @@ var app = {
 
         scanner.scan( function (result) { 
             var ISBN = result.text;
-            alert("https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN);
+            
+            	$.ajax({//call to login webservice
+				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN,
+				type : "GET",
+				dataType : 'json',
+				
+			}).done(function(data) {//success
+
+			var book = JSON.stringify(data)
+            alert(data);
+			});
+	
 
            console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +
