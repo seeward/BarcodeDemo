@@ -51,8 +51,8 @@ body {
     position:absolute;             /* position in the center of the screen */
     left:5%;
     top:5%;
-    height:700px;                   /* text area height */
-    width:300px;                   /* text area width */
+    height:100%;                   /* text area height */
+    width:100%;                   /* text area width */
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
@@ -62,8 +62,9 @@ body {
 #content {
 	position:absolute;
 	width:100%;
-	top:100px;
-	left:25%
+	top:300px;
+	left:40%;
+	
 }
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
