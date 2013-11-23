@@ -61,9 +61,9 @@ body {
 
 #content {
 	position:absolute;
-	width:100%;
+	width:500px;
 	top:300px;
-	left:40%;
+	left:0px;
 	
 }
 /* Landscape layout (with min-width) */
