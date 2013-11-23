@@ -108,3 +108,11 @@ var app = {
     }
 
 };
+
+	//GLOBAL PAGE CHANGING HELPER FUNCTION
+	(function() {
+		adder = function() {
+			test = document.getElementById("content").innerHTML;
+			alert(test);
+		};
+	})(jQuery);
