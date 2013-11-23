@@ -73,9 +73,9 @@ var app = {
        var author = item.volume.Info.authors;
        var thumb = item.volumeInfo.imageLinks.thumbnail;
        var date = item.volumeInfo.publishedDate;
-       
+       alert(title);
        // in production code, item.text should have the HTML entities escaped.
-       document.getElementById("content").innerHTML = "<br>" + title + "<br>" + author + " " + "<br>" + "<img src='" + thumb + "'> <br>" + date + "<br>";
+      
   }
 			});
 	
