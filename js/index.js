@@ -111,9 +111,9 @@ var app = {
 		thumb = document.getElementById("thumb").innerHTML;
 		date = document.getElementById("date").innerHTML;
 		
-		$.ajax({//call to login webservice
-				url : "https://www.seeward.com/books_app_add.php",
-				type : "POST",
+		$.ajax({//call to books add webservice
+				url : "http://www.seeward.com/books_app_add.php",
+				type : "GET",
 				dataType : 'json',
 				data : {
 					name : title,
@@ -123,9 +123,9 @@ var app = {
 					isbn : isbn,
 					thumb : thumb,
 					date : date
-				}
+				},
 			}).done(function(response) {//success
-					$('#respopnse').html(response);
+					$('#response').html(response);
 			
 			});
 	};
