@@ -28,7 +28,7 @@ var app = {
 	bindEvents : function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.getElementById('scan').addEventListener('click', this.scan, false);
-		document.getElementById('encode').addEventListener('click', this.encode, false);
+	
 	},
 
 	// deviceready Event Handler
@@ -100,16 +100,17 @@ var app = {
 	}
 };
 
-//GLOBAL PAGE CHANGING HELPER FUNCTION
+
 (function() {
 	adder = function() {
-		title = "test";
-		author = "test";
-		subject = "test";
-		description = d"test";
-		isbn = "test";
-		thumb = "test";
-		date = "test";
+		title = document.getElementById("title").innerHTML;
+		author = document.getElementById("author").innerHTML;
+		subject = document.getElementById("subject").innerHTML;
+		description = document.getElementById("description").innerHTML;
+		isbn = document.getElementById("isbn").innerHTML;
+		thumb = document.getElementById("thumb").innerHTML;
+		date = document.getElementById("date").innerHTML;
+		
 		
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
