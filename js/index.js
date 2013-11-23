@@ -28,6 +28,7 @@ var app = {
 	bindEvents : function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.getElementById('scan').addEventListener('click', this.scan, false);
+		document.getElementById('add').addEventListener('click', this.add, false);
 	
 	},
 
@@ -52,8 +53,6 @@ var app = {
 	},
 
 	scan : function() {
-		console.log('scanning');
-
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
 		scanner.scan(function(result) {
@@ -81,8 +80,40 @@ var app = {
 		}, function(error) {
 			console.log("Scanning failed: ", error);
 		});
+		
+	},
+	
+	add : function () {
+		
+			title = document.getElementById("title").innerHTML;
+		author = document.getElementById("author").innerHTML;
+
+		description = document.getElementById("description").innerHTML;
+		isbn = document.getElementById("isbn").innerHTML;
+		thumb = document.getElementById("thumb").innerHTML;
+		date = document.getElementById("date").innerHTML;
+		
+	
+		$.ajax({//call to books add webservice
+				url : "http://www.seeward.com/books_app_add.php",
+				type : "GET",
+				dataType : 'html',
+				data : {
+					name : title,
+					author : author,
+					description : description,
+					isbn : isbn,
+					thumb : thumb,
+					date : date
+				},
+			}).done(function(response) {//success
+					alert(response);
+			
+			});
+		
 	},
 
+	
 	encode : function() {
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
@@ -96,33 +127,4 @@ var app = {
 };
 
 
-(function() {
-	adder = function() {
-		title = document.getElementById("title").innerHTML;
-		author = document.getElementById("author").innerHTML;
-		subject = document.getElementById("subject").innerHTML;
-		description = document.getElementById("description").innerHTML;
-		isbn = document.getElementById("isbn").innerHTML;
-		thumb = document.getElementById("thumb").innerHTML;
-		date = document.getElementById("date").innerHTML;
-		
-	
-		$.ajax({//call to books add webservice
-				url : "http://www.seeward.com/books_app_add.php",
-				type : "GET",
-				dataType : 'json',
-				data : {
-					name : title,
-					author : author,
-					subject : subject,
-					description : description,
-					isbn : isbn,
-					thumb : thumb,
-					date : date
-				},
-			}).done(function(response) {//success
-					$('#response').html(response);
-			
-			});
-	};
-})(jQuery);
+
