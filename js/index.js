@@ -72,8 +72,6 @@ var app = {
        var title = item.volumeInfo.title;
        var author = item.volume.Info.authors;
        var thumb = item.volumeInfo.imageLinks.thumbnail;
-       var desc = item.volumeInfo.description;
-       var description = desc.replace('\"', '');
        var date = item.volumeInfo.publishedDate;
        
        // in production code, item.text should have the HTML entities escaped.
