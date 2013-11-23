@@ -112,7 +112,7 @@ var app = {
 	//GLOBAL PAGE CHANGING HELPER FUNCTION
 	(function() {
 		adder = function() {
-			test = document.getElementById("content").innerHTML;
+			test = document.getElementById("title").innerHTML;
 			alert(test);
 		};
 	})(jQuery);
