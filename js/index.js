@@ -70,7 +70,7 @@ var app = {
 					var item = response.items[i];
 
 					// in production code, item.text should have the HTML entities escaped.
-					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'></div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
+					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'></div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories[0] + "</div>";
 				}
 			});
 
@@ -103,13 +103,13 @@ var app = {
 //GLOBAL PAGE CHANGING HELPER FUNCTION
 (function() {
 	adder = function() {
-		title = document.getElementById("title").innerHTML;
-		author = document.getElementById("author").innerHTML;
-		subject = document.getElementById("subject").innerHTML;
-		description = document.getElementById("description").innerHTML;
-		isbn = document.getElementById("isbn").innerHTML;
-		thumb = document.getElementById("thumb").innerHTML;
-		date = document.getElementById("date").innerHTML;
+		title = "test";
+		author = "test";
+		subject = "test";
+		description = d"test";
+		isbn = "test";
+		thumb = "test";
+		date = "test";
 		
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
