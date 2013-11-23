@@ -112,8 +112,8 @@ var app = {
 		date = document.getElementById("date").innerHTML;
 		
 		$.ajax({//call to login webservice
-				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN,
-				type : "GET",
+				url : "https://www.seeward.com/books_app_add.php",
+				type : "POST",
 				dataType : 'json',
 				data : {
 					name : title,
