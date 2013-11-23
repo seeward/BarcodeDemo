@@ -77,7 +77,7 @@ var app = {
        var date = item.volumeInfo.publishedDate;
        
        // in production code, item.text should have the HTML entities escaped.
-       document.getElementById("content").innerHTML = "<br>" + title + "<br>" + author + " " + "<br>" + "<img src='" + thumb + "'> <br>" + date + "<br>" + description + "<br>";
+       document.getElementById("content").innerHTML = "<br>" + title + "<br>" + author + " " + "<br>" + "<img src='" + thumb + "'> <br>" + date + "<br>";
   }
 			});
 	
