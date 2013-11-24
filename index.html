@@ -31,7 +31,10 @@
           <div id="content"></div>
             <p><button href="#" data-role="button" id="scan">Scan a Book</button></p>
             <p><button href="#" data-role="button" id="add">Add to Library</button></p>
-             
+            <p><button href="#" data-role="button" id="manual">Search by ISBN</button></p>
+            <input type="text" name="isbn" id="isbn"></input>
+            <p><button href="#" data-role="button" id="library">Show Library</button></p>
+            
            </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jq.js"></script>
@@ -40,7 +43,22 @@
 		<script src="js/jquery.mobile-1.3.1.min.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
+                <script type="text/javascript" src="js/mustache.js"></script>
  
+
+	<script type="text/mustacheTemplate" id="libraryList">
+		<ul id="MainList">
+		
+		{{#items}}
+		<li>
+		<h4 class="menuHeader">{{NAME}}</h4>
+		<p class="menuDesc"><img src='http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api' ></p>
+	
+
+		</li>
+		{{/items}}
+		</ul>
+	</script>
 
 
 	

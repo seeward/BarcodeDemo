@@ -20,7 +20,13 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
+		
+		
 	},
+	
+
+	
+	
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
@@ -29,7 +35,8 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.getElementById('scan').addEventListener('click', this.scan, false);
 		document.getElementById('add').addEventListener('click', this.add, false);
-	
+			document.getElementById('manual').addEventListener('click', this.manual, false);
+						document.getElementById('library').addEventListener('click', this.library, false);
 	},
 
 	// deviceready Event Handler
@@ -53,6 +60,9 @@ var app = {
 	},
 
 	scan : function() {
+		
+		console.log('scanning');
+
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
 		scanner.scan(function(result) {
@@ -69,7 +79,7 @@ var app = {
 					var item = response.items[i];
 
 					// in production code, item.text should have the HTML entities escaped.
-					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + "<img src='" + item.volumeInfo.imageLinks.thumbnail + "'></div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div>";
+					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div>";
 				}
 			});
 
@@ -80,20 +90,19 @@ var app = {
 		}, function(error) {
 			console.log("Scanning failed: ", error);
 		});
-		
 	},
 	
 	add : function () {
 		
 			title = document.getElementById("title").innerHTML;
 		author = document.getElementById("author").innerHTML;
-
+		subject = document.getElementById("subject").innerHTML;
 		description = document.getElementById("description").innerHTML;
 		isbn = document.getElementById("isbn").innerHTML;
 		thumb = document.getElementById("thumb").innerHTML;
 		date = document.getElementById("date").innerHTML;
 		
-	
+	alert(thumb);
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
 				type : "GET",
@@ -102,6 +111,7 @@ var app = {
 					name : title,
 					author : author,
 					description : description,
+					subject : subject,
 					isbn : isbn,
 					thumb : thumb,
 					date : date
@@ -112,8 +122,59 @@ var app = {
 			});
 		
 	},
-
 	
+	manual : function () {
+		search = $('#isbn').val();
+
+		$.ajax({//call to login webservice
+				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
+				type : "GET",
+				dataType : 'json',
+
+			}).done(function(response) {//success
+
+				for (var i = 0; i < response.items.length; i++) {
+					var item = response.items[i];
+
+					// in production code, item.text should have the HTML entities escaped.
+					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
+				}
+			});
+	},
+	
+	displayBooks : function() {
+		
+			Storage.prototype.getObject = function(key) {
+		var value = this.getItem(key);
+		return value && JSON.parse(value);
+	};
+	
+	library = window.localStorage.getObject('books');
+	var template = $('#libraryList').html();
+
+				var html = Mustache.to_html(template, library);
+				$('#content').html(html);
+	},
+
+	library : function () {
+		
+
+		$.ajax({//call to login webservice
+				url : "http://www.seeward.com/books_app.php",
+				type : "GET",
+				dataType : 'json',
+
+			}).done(function(response) {//success
+				
+				var all = { "items" : response };
+				Storage.prototype.setObject = function(key, value) {
+		this.setItem(key, JSON.stringify(value));
+	};
+				window.localStorage.setObject("books", all);
+				
+				app.displayBooks();
+			});
+	},
 	encode : function() {
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
