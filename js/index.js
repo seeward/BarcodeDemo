@@ -101,12 +101,7 @@ var app = {
 		isbn = document.getElementById("isbn").innerHTML;
 		thumb = document.getElementById("thumb").innerHTML;
 		date = document.getElementById("date").innerHTML;
-<<<<<<< HEAD
-	
-=======
-		
 
->>>>>>> 606c41633f20e7a963a61e42efbd266aebd7bcab
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
 				type : "GET",
