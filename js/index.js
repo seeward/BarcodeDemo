@@ -102,7 +102,7 @@ var app = {
 		thumb = document.getElementById("thumb").innerHTML;
 		date = document.getElementById("date").innerHTML;
 		
-	alert(thumb);
+
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
 				type : "GET",
