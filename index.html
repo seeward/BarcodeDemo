@@ -28,7 +28,9 @@
     <body>
         <div class="app">
         	<div id="response"></div>
+        	<div id="wrapper">
           <div id="content"></div>
+         </div>
             <p><button href="#" data-role="button" id="scan">Scan a Book</button></p>
             <p><button href="#" data-role="button" id="add">Add to Library</button></p>
             <p><button href="#" data-role="button" id="manual">Search by ISBN</button></p>
@@ -47,15 +49,15 @@
  
 
 	<script type="text/mustacheTemplate" id="libraryList">
-		<ul id="MainList">
-		
-		{{#items}}
-		<li>
-		<h4 class="menuHeader">{{NAME}}</h4>
-		<p class="menuDesc"><img src='http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api' ></p>
-	
 
-		</li>
+	
+		
+		<ul data-role="listview">
+			{{#items}}
+        <li>
+            <a href="#" id="{{ISBN}}">{{NAME}}
+                <img src='http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api' ></a>
+        </li>
 		{{/items}}
 		</ul>
 	</script>

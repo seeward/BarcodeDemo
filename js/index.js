@@ -101,8 +101,7 @@ var app = {
 		isbn = document.getElementById("isbn").innerHTML;
 		thumb = document.getElementById("thumb").innerHTML;
 		date = document.getElementById("date").innerHTML;
-		
-	alert(thumb);
+	
 		$.ajax({//call to books add webservice
 				url : "http://www.seeward.com/books_app_add.php",
 				type : "GET",
@@ -154,6 +153,7 @@ var app = {
 
 				var html = Mustache.to_html(template, library);
 				$('#content').html(html);
+				$.mobile.activePage.trigger('create');
 	},
 
 	library : function () {
