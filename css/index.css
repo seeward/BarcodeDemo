@@ -42,6 +42,12 @@ body {
     width:100%;
 }
 
+
+#mainLibraryList > .ui-li {
+    height : 85px;
+    padding-top:10px
+}
+
 /* Portrait layout (default) */
 .app {
  /* 170px x 200px */
