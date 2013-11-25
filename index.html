@@ -57,7 +57,7 @@
 
 	<script type="text/mustacheTemplate" id="libraryList">
 
-		<ul data-role="listview" data-inset="true" id="mainLibraryList">
+		<ul data-role="listview" data-inset="true" data-filter="true" id="mainLibraryList">
 			{{#items}}
         <li>
             <a href="#" onClick="app.details({{ISBN}});"><span style="color:#19a061">{{NAME}}</span><br>{{AUTHOR}}<br>{{DATE}} -- {{SUBJECT}}

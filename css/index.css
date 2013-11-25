@@ -48,10 +48,12 @@ body {
    
 }
 
-
+.ui-input-search {
+	margin-bottom:50px!important
+}
 
 #content {
-	margin-top:10px!important
+	margin-top:30px!important
 }
 
 /* Portrait layout (default) */
