@@ -52,7 +52,7 @@ var app = {
 
 	enterISBN : function() {
 		$('#content').empty();
-		inputer = '<input type="text" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p>';
+		inputer = '<input type="tel" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p>';
 		$('#content').html(inputer);
 		
 			$.mobile.activePage.trigger('create');
@@ -135,7 +135,7 @@ var app = {
 	
 	manual : function () {
 		search = $('#isbn').val();
-			$('#enterISBN').empty();
+		
 		
 		$('#content').html("<img src='css/ajax-loader.gif'>")
 		$.ajax({//call to login webservice
