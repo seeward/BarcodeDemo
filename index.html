@@ -28,7 +28,7 @@
     <body>
         <div class="app">
         	<div id="response"></div>
-        	<div id="wrapper">
+        	<div id="wrapper" align="center">
           <div id="content"></div>
          </div>
             <p><button href="#" data-role="button" id="scan">Scan a Book</button></p>
@@ -50,16 +50,37 @@
 
 	<script type="text/mustacheTemplate" id="libraryList">
 
-	
-		
-		<ul data-role="listview">
+		<ul data-role="listview" data-inset="true" id="mainLibraryList">
 			{{#items}}
         <li>
-            <a href="#" id="{{ISBN}}"><span style="color:#19a061">{{NAME}}</span><br>{{AUTHOR}}<br>{{DATE}} -- {{SUBJECT}}
+            <a href="#" onClick="app.details({{ISBN}});"><span style="color:#19a061">{{NAME}}</span><br>{{AUTHOR}}<br>{{DATE}} -- {{SUBJECT}}
                 <img src='http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api' ></a>
         </li>
 		{{/items}}
 		</ul>
+	</script>
+	
+	<script type="text/mustacheTemplate" id="detailList">
+
+		<ul data-role="listview" data-inset="true" id="bookDetail">
+			{{#item}}
+        <li><img src='http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api' >
+          
+        </li>
+        <li>{{NAME}}</li>
+                <li>
+            {{AUTHOR}}
+        </li>
+        <li>
+        	{{DESCRIPTION}}
+        </li>
+        <li>
+        	{{SUBJECT}}
+        </li>
+		{{/item}}
+			</ul>
+		<a data-role="button" data-theme="c" id="backer" onClick="app.displayBooks();">Back to Library</a>
+	
 	</script>
 
 

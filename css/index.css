@@ -56,9 +56,14 @@ body {
                                    /* offset horizontal: half of text area width */
 }
 
+#mainLibraryList, #bookDetail {
+	margin-left:0px!important;
+	
+}
 #content {
 	position:absolute;
-	width:100%;
+	padding-left:5px;
+	width:95%;
 	top:320px;
 	left:0px;
 	font-size:22px;

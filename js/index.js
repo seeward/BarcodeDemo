@@ -25,7 +25,7 @@ var app = {
 	},
 	
 
-	
+
 	
 	// Bind Event Listeners
 	//
@@ -37,6 +37,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 			document.getElementById('manual').addEventListener('click', this.manual, false);
 						document.getElementById('library').addEventListener('click', this.library, false);
+							
 	},
 
 	// deviceready Event Handler
@@ -94,7 +95,7 @@ var app = {
 	
 	add : function () {
 		
-			title = document.getElementById("title").innerHTML;
+		title = document.getElementById("title").innerHTML;
 		author = document.getElementById("author").innerHTML;
 		subject = document.getElementById("subject").innerHTML;
 		description = document.getElementById("description").innerHTML;
@@ -124,7 +125,8 @@ var app = {
 	
 	manual : function () {
 		search = $('#isbn').val();
-
+		alert("https://www.googleapis.com/books/v1/volumes?q=isbn:" + search);
+		
 		$.ajax({//call to login webservice
 				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
 				type : "GET",
@@ -154,8 +156,42 @@ var app = {
 				var html = Mustache.to_html(template, library);
 				$('#content').html(html);
 				$.mobile.activePage.trigger('create');
+				
 	},
 
+
+	details : function(id) {
+		var isbn2 = id;
+		
+		Storage.prototype.getObject = function(key) {
+		var value = this.getItem(key);
+		return value && JSON.parse(value);
+	};
+		
+		result = window.localStorage.getObject('books');
+			
+			var details;
+			$.each(result.items, function(i, obj) {
+			
+				if(obj.ISBN == isbn2)
+				details = obj;
+				
+			
+			});
+			
+			all = {
+				"item" : details
+			};
+			
+				var template = $('#detailList').html();
+
+				var html = Mustache.to_html(template, all);
+				$('#content').html(html);
+				$.mobile.activePage.trigger('create');
+				
+			
+	},
+	
 	library : function () {
 		
 
