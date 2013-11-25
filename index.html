@@ -27,12 +27,20 @@
     </head>
     <body>
         <div class="app">
-            <p><button href="#" data-role="button" id="scan">Scan a Book</button></p>
-            <p><button href="#" data-role="button" data-theme="a" id="add">Add to Library</button></p>
-            <p><button href="#" data-role="button" id="manual">Search by ISBN</button></p>
+        	<div data-role="header" style="overflow:hidden;padding-bottom:5px!important">
+    <h1>Book Library</h1>
+    <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+        	<div data-role="navbar" data-grid="c">
+    <ul>
+        <li><button href="#" data-role="button" data-icon="star" id="scan">Scan a Book</button></li>
+        <li><button href="#" data-role="button" data-icon="add" data-theme="a" id="add">Add to Library</button></li>
+        <li><button href="#" data-role="button" data-icon="search" id="manual">Search by ISBN</button></li>
+        <li><button href="#" data-role="button" data-icon="grid" id="library">Show Library</button></li>
+    </ul>
+</div><!-- /navbar -->
+</div><!-- /header -->
+            
             <div id="enterISBN"></div>
-            <p><button href="#" data-role="button" id="library">Show Library</button></p>
-            <br>
             <div id="wrapper" align="center">
           <div id="content"></div>
          </div>

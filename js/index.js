@@ -135,7 +135,7 @@ var app = {
 	manual : function () {
 		search = $('#isbn').val();
 			$('#enterISBN').empty();
-		alert("https://www.googleapis.com/books/v1/volumes?q=isbn:" + search);
+		
 		
 		$.ajax({//call to login webservice
 				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
