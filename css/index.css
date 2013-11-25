@@ -20,19 +20,18 @@
                    /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
+.ui-page.ui-body-c {
+    background: url(img/dimension.png)!important;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+
+
+.ui-body-c, .ui-overlay-c { background: none!important;}
+
 body {
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+ 
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:20px;
     height:100%;
@@ -60,6 +59,7 @@ body {
 .app {
  /* 170px x 200px */
            /* position in the center of the screen */
+         background: none!important;
     left:0px;
     top:0px;
     height:100%;                   /* text area height */
@@ -79,7 +79,7 @@ body {
 	
 
 	font-size:22px;
-	padding:10px
+	padding:10px;
 	
 }
 
