@@ -70,7 +70,7 @@ var app = {
 	},
 
 	scan : function() {
-		
+		$('#content').html("<img src='css/ajax-loader.gif'>")
 		console.log('scanning');
 
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
@@ -91,6 +91,7 @@ var app = {
 					// in production code, item.text should have the HTML entities escaped.
 					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
 				}
+				$.mobile.activePage.trigger('create');
 			});
 
 			console.log("Scanner result: \n" + "text: " + result.text + "\n" + "format: " + result.format + "\n" + "cancelled: " + result.cancelled + "\n");
@@ -136,7 +137,7 @@ var app = {
 		search = $('#isbn').val();
 			$('#enterISBN').empty();
 		
-		
+		$('#content').html("<img src='css/ajax-loader.gif'>")
 		$.ajax({//call to login webservice
 				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
 				type : "GET",
@@ -150,12 +151,14 @@ var app = {
 					// in production code, item.text should have the HTML entities escaped.
 					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
 				}
+				$.mobile.activePage.trigger('create');
+			
 			});
 		
 	},
 	
 	displayBooks : function() {
-		
+	
 			Storage.prototype.getObject = function(key) {
 		var value = this.getItem(key);
 		return value && JSON.parse(value);
@@ -173,7 +176,7 @@ var app = {
 
 	details : function(id) {
 		var isbn2 = id;
-		
+		$('#content').html("<img src='css/ajax-loader.gif'>");
 		Storage.prototype.getObject = function(key) {
 		var value = this.getItem(key);
 		return value && JSON.parse(value);
@@ -205,7 +208,7 @@ var app = {
 	
 	library : function () {
 		
-
+	$('#content').html("<img src='css/ajax-loader.gif'>");
 		$.ajax({//call to login webservice
 				url : "http://www.seeward.com/books_app.php",
 				type : "GET",
