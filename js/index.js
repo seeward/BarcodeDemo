@@ -53,7 +53,7 @@ var app = {
 	enterISBN : function() {
 		$('#content').empty();
 		inputer = '<input type="text" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p>';
-		$('#enterISBN').html(inputer).slideDown('slow');
+		$('#content').html(inputer);
 		
 			$.mobile.activePage.trigger('create');
 	},
