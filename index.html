@@ -32,10 +32,10 @@
     
         	<div data-role="navbar" data-grid="c">
     <ul>
-        <li><button href="#" data-role="button" data-icon="star" id="scan">Scan a Book</button></li>
-        <li><button href="#" data-role="button" data-icon="add" data-theme="a" id="add">Add to Library</button></li>
-        <li><button href="#" data-role="button" data-icon="search" id="manual">Search by ISBN</button></li>
-        <li><button href="#" data-role="button" data-icon="grid" id="library">Show Library</button></li>
+        <li><button href="#" data-role="button" data-icon="star" id="scan">Scan</button></li>
+        <li><button href="#" data-role="button" data-icon="add" data-theme="a" id="add">Add</button></li>
+        <li><button href="#" data-role="button" data-icon="search" id="manual">ISBN</button></li>
+        <li><button href="#" data-role="button" data-icon="grid" id="library">Show</button></li>
     </ul>
 </div><!-- /navbar -->
 </div><!-- /header -->
@@ -81,7 +81,10 @@
         	{{DESCRIPTION}}
         </li>
         <li>
-        	{{SUBJECT}}
+        	<p>Subject: </p>{{SUBJECT}}
+        </li>
+        <li>
+        	<a href="http://books.google.co.za/books/about/Jesus_the_Model.html?hl=&id={{THUMB}}" target="_blank">Google Books Link</a>
         </li>
 		{{/item}}
 			</ul>
