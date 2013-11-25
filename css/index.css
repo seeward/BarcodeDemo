@@ -48,6 +48,12 @@ body {
    
 }
 
+
+
+#content {
+	margin-top:50px!important
+}
+
 /* Portrait layout (default) */
 .app {
  /* 170px x 200px */
