@@ -53,7 +53,7 @@
         <script type="text/javascript" src="barcodescanner.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
                 <script type="text/javascript" src="js/mustache.js"></script>
- 
+<link href='http://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
 
 	<script type="text/mustacheTemplate" id="libraryList">
 
@@ -71,8 +71,8 @@
 
 		<ul data-role="listview" data-inset="true" id="bookDetail">
 			{{#item}}
-			<img class="shadow" src="http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=1&source=gbs_api" style="padding:25px!important">
-        <li>
+			<img class="shadow" src="http://bks4.books.google.co.za/books?id={{THUMB}}&printsec=frontcover&img=1&zoom=1&source=gbs_api" width="300px">
+        <li style="margin-top:25px!important">
           {{NAME}}
         </li>
         <li>
