@@ -42,6 +42,12 @@ body {
 }
 
 
+.shadow {
+	-webkit-box-shadow: 7px 7px 30px rgba(50, 50, 50, 0.62);
+-moz-box-shadow:    7px 7px 30px rgba(50, 50, 50, 0.62);
+box-shadow:         7px 7px 30px rgba(50, 50, 50, 0.62);
+}
+
 #mainLibraryList > .ui-li {
     height : 85px;
    
