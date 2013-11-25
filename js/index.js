@@ -35,7 +35,7 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.getElementById('scan').addEventListener('click', this.scan, false);
 		document.getElementById('add').addEventListener('click', this.add, false);
-			document.getElementById('manual').addEventListener('click', this.manual, false);
+			document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 						document.getElementById('library').addEventListener('click', this.library, false);
 							
 	},
@@ -48,6 +48,15 @@ var app = {
 		app.receivedEvent('deviceready');
 	},
 
+
+
+	enterISBN : function() {
+		$('#content').empty();
+		inputer = '<input type="text" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p>';
+		$('#enterISBN').html(inputer).slideDown('slow');
+		
+			$.mobile.activePage.trigger('create');
+	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		var parentElement = document.getElementById(id);
@@ -125,6 +134,7 @@ var app = {
 	
 	manual : function () {
 		search = $('#isbn').val();
+			$('#enterISBN').empty();
 		alert("https://www.googleapis.com/books/v1/volumes?q=isbn:" + search);
 		
 		$.ajax({//call to login webservice
@@ -141,6 +151,7 @@ var app = {
 					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
 				}
 			});
+		
 	},
 	
 	displayBooks : function() {
