@@ -60,7 +60,7 @@ var app = {
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/random.php",
 			type : "GET",
-			dataType : 'html',
+			dataType : 'json',
 
 		}).done(function(response) {//success
 
@@ -75,20 +75,14 @@ var app = {
 				return value && JSON.parse(value);
 			};
 
-			result = window.localStorage.getObject('books');
+			result = window.localStorage.getObject('randomBook');
+		
 
-			var details;
-			$.each(result.items, function(i, obj) {
-
-				
-					details = obj;
-
-			});
 
 			all = {
-				"item" : details
+				"item" : result
 			}
-
+	
 			var template = $('#detailList').html();
 
 			var html = Mustache.to_html(template, all);
