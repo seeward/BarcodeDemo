@@ -20,13 +20,10 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		
-		this.library();
+
+		this.randomizer();
 	},
-	
 
-
-	
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
@@ -35,9 +32,9 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		document.getElementById('scan').addEventListener('click', this.scan, false);
 		document.getElementById('add').addEventListener('click', this.add, false);
-			document.getElementById('manual').addEventListener('click', this.enterISBN, false);
-						document.getElementById('library').addEventListener('click', this.library, false);
-							
+		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
+		document.getElementById('library').addEventListener('click', this.library, false);
+
 	},
 
 	// deviceready Event Handler
@@ -48,14 +45,58 @@ var app = {
 		app.receivedEvent('deviceready');
 	},
 
-
-
 	enterISBN : function() {
 		$('#content').empty();
 		inputer = '<input type="tel" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p>';
 		$('#content').html(inputer);
-		
+
+		$.mobile.activePage.trigger('create');
+	},
+
+	randomizer : function() {
+
+		$('#content').html("<img src='css/ajax-loader.gif'>");
+
+		$.ajax({//call to login webservice
+			url : "http://www.seeward.com/random.php",
+			type : "GET",
+			dataType : 'html',
+
+		}).done(function(response) {//success
+
+			Storage.prototype.setObject = function(key, value) {
+				this.setItem(key, JSON.stringify(value));
+			};
+
+			window.localStorage.setObject('randomBook', response);
+
+			Storage.prototype.getObject = function(key) {
+				var value = this.getItem(key);
+				return value && JSON.parse(value);
+			};
+
+			result = window.localStorage.getObject('books');
+
+			var details;
+			$.each(result.items, function(i, obj) {
+
+				
+					details = obj;
+
+			});
+
+			all = {
+				"item" : details
+			}
+
+			var template = $('#detailList').html();
+
+			var html = Mustache.to_html(template, all);
+			$('#content').html(html);
 			$.mobile.activePage.trigger('create');
+
+		});
+
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
@@ -96,15 +137,14 @@ var app = {
 
 			console.log("Scanner result: \n" + "text: " + result.text + "\n" + "format: " + result.format + "\n" + "cancelled: " + result.cancelled + "\n");
 			document.getElementById("info").innerHTML = result.text;
-			
 
 		}, function(error) {
 			console.log("Scanning failed: ", error);
 		});
 	},
-	
-	add : function () {
-		
+
+	add : function() {
+
 		title = document.getElementById("title").innerHTML;
 		author = document.getElementById("author").innerHTML;
 		subject = document.getElementById("subject").innerHTML;
@@ -114,116 +154,114 @@ var app = {
 		date = document.getElementById("date").innerHTML;
 
 		$.ajax({//call to books add webservice
-				url : "http://www.seeward.com/books_app_add.php",
-				type : "GET",
-				dataType : 'html',
-				data : {
-					name : title,
-					author : author,
-					description : description,
-					subject : subject,
-					isbn : isbn,
-					thumb : thumb,
-					date : date
-				},
-			}).done(function(response) {//success
-					alert(response);
-			
-			});
-		
+			url : "http://www.seeward.com/books_app_add.php",
+			type : "GET",
+			dataType : 'html',
+			data : {
+				name : title,
+				author : author,
+				description : description,
+				subject : subject,
+				isbn : isbn,
+				thumb : thumb,
+				date : date
+			},
+		}).done(function(response) {//success
+			alert(response);
+
+		});
+
 	},
-	
-	manual : function () {
+
+	manual : function() {
 		search = $('#isbn').val();
-		
-		
+
 		$('#content').html("<img src='css/ajax-loader.gif'>")
 		$.ajax({//call to login webservice
-				url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
-				type : "GET",
-				dataType : 'json',
+			url : "https://www.googleapis.com/books/v1/volumes?q=isbn:" + search,
+			type : "GET",
+			dataType : 'json',
 
-			}).done(function(response) {//success
+		}).done(function(response) {//success
 
-				for (var i = 0; i < response.items.length; i++) {
-					var item = response.items[i];
+			for (var i = 0; i < response.items.length; i++) {
+				var item = response.items[i];
 
-					// in production code, item.text should have the HTML entities escaped.
-					document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
-				}
-				$.mobile.activePage.trigger('create');
-			
-			});
-		
+				// in production code, item.text should have the HTML entities escaped.
+				document.getElementById("content").innerHTML = "<div id='title'>" + item.volumeInfo.title + "</div><div id='author'>" + item.volumeInfo.authors + " " + "</div><div id='thumb'>" + item.id + "</div><div id='date'>" + item.volumeInfo.publishedDate + "</div><div id='description'>" + item.volumeInfo.description + "</div><div id='isbn'>" + item.volumeInfo.industryIdentifiers[1].identifier + "</div><div id='subject'>" + item.volumeInfo.categories + "</div>";
+			}
+			$.mobile.activePage.trigger('create');
+
+		});
+
 	},
-	
+
 	displayBooks : function() {
-	
-			Storage.prototype.getObject = function(key) {
-		var value = this.getItem(key);
-		return value && JSON.parse(value);
-	};
-	
-	library = window.localStorage.getObject('books');
-	var template = $('#libraryList').html();
 
-				var html = Mustache.to_html(template, library);
-				$('#content').html(html);
-				$.mobile.activePage.trigger('create');
-				
+		Storage.prototype.getObject = function(key) {
+			var value = this.getItem(key);
+			return value && JSON.parse(value);
+		};
+
+		library = window.localStorage.getObject('books');
+		var template = $('#libraryList').html();
+
+		var html = Mustache.to_html(template, library);
+		$('#content').html(html);
+		$.mobile.activePage.trigger('create');
+
 	},
-
 
 	details : function(id) {
 		var isbn2 = id;
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 		Storage.prototype.getObject = function(key) {
-		var value = this.getItem(key);
-		return value && JSON.parse(value);
-	};
-		
+			var value = this.getItem(key);
+			return value && JSON.parse(value);
+		};
+
 		result = window.localStorage.getObject('books');
-			
-			var details;
-			$.each(result.items, function(i, obj) {
-			
-				if(obj.ISBN == isbn2)
+
+		var details;
+		$.each(result.items, function(i, obj) {
+
+			if (obj.ISBN == isbn2)
 				details = obj;
-				
-			
-			});
-			
-			all = {
-				"item" : details
-			};
-			
-				var template = $('#detailList').html();
 
-				var html = Mustache.to_html(template, all);
-				$('#content').html(html);
-				$.mobile.activePage.trigger('create');
-				
-			
+		});
+
+		all = {
+			"item" : details
+		};
+
+		var template = $('#detailList').html();
+
+		var html = Mustache.to_html(template, all);
+		$('#content').html(html);
+		$.mobile.activePage.trigger('create');
+
 	},
-	
-	library : function () {
-		
-	$('#content').html("<img src='css/ajax-loader.gif'>");
-		$.ajax({//call to login webservice
-				url : "http://www.seeward.com/books_app.php",
-				type : "GET",
-				dataType : 'json',
 
-			}).done(function(response) {//success
-				
-				var all = { "items" : response };
-				Storage.prototype.setObject = function(key, value) {
-		this.setItem(key, JSON.stringify(value));
-	};
-				window.localStorage.setObject("books", all);
-				
-				app.displayBooks();
-			});
+	library : function() {
+
+		$('#content').html("<img src='css/ajax-loader.gif'>");
+		$.ajax({//call to login webservice
+			url : "http://www.seeward.com/books_app.php",
+			type : "GET",
+			dataType : 'json',
+
+		}).done(function(response) {//success
+
+			var all = {
+				"items" : response
+			};
+			Storage.prototype.setObject = function(key, value) {
+				this.setItem(key, JSON.stringify(value));
+			};
+			window.localStorage.setObject("books", all);
+
+			app.displayBooks();
+		});
 	},
 	encode : function() {
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
@@ -236,6 +274,4 @@ var app = {
 
 	}
 };
-
-
 
