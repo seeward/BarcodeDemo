@@ -1,6 +1,3 @@
-BarcodeDemo
-===========
+Books_Library v2 (2013)
 
-A PhoneGap app demoing the [BarcodeScanner Plugin](http://github.com/wildabeast/BarcodeScanner).
-
-Includes config.xml file for [PhoneGap Build](https://build.phonegap.com).
+Built on top of BarcodeDemo built by wildabeast. 
