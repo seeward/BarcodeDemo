@@ -167,6 +167,12 @@ var app = {
 
 	},
 
+
+	test : function () {
+		
+		
+	},
+	
 	manual : function() {
 		search = $('#isbn').val();
 
