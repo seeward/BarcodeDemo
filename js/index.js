@@ -22,7 +22,7 @@ var app = {
 		this.bindEvents();
 		var currentType;
 		var intCheck = 0;
-		this.library();
+		this.randomizer();
 	},
 
 
@@ -38,7 +38,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
-		
+		$( '#library' ).bind( "taphold", this.resetLibrary );
 	},
 
 	// deviceready Event Handler
@@ -217,7 +217,7 @@ var app = {
 	},
 
 	displayBooks : function() {
-		
+		$('#content').hide();
 		Storage.prototype.getObject = function(key) {
 			var value = this.getItem(key);
 			return value && JSON.parse(value);
@@ -227,7 +227,6 @@ var app = {
 		var template = $('#libraryList').html();
 
 		var html = Mustache.to_html(template, library);
-		$('#content').hide();
 		$('#content').html(html).fadeIn('slow');
 		$.mobile.activePage.trigger('create');
 
@@ -266,10 +265,7 @@ var app = {
 	library : function() {
 
 		$('#content').html("<img src='css/ajax-loader.gif'>");
-		Storage.prototype.getObject = function(key) {
-			var value = this.getItem(key);
-			return value && JSON.parse(value);
-		};
+		
 		if(window.localStorage.getObject('books') === null) {
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/books_app.php",
