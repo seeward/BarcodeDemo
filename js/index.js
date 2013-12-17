@@ -207,7 +207,7 @@ var app = {
 		$.ajax({//call to login webservice
 			url : "https://www.seeward.com/book_app_comment.php",
 			type : "GET",
-			dataType : 'json',
+			dataType : 'html',
 			data: {
 				id : id,
 				comment : commentText
@@ -216,6 +216,9 @@ var app = {
 		}).done(function(response) {//success
 			
 			alert(response);
+			
+			app.library();
+			
 		});
 	},
 	
