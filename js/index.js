@@ -77,7 +77,7 @@ var app = {
 
 	enterISBN : function() {
 		$('#content').empty();
-		inputer = '<input type="tel" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p><br><a data-role="button" onClick="app.resetLibrary();" data-theme="a">Reset Library</a>';
+		inputer = '<input type="tel" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p><a data-role="button" onClick="app.resetLibrary();" data-theme="a">Reset Library</a><button href="#" data-role="button" data-icon="grid" onClick="app.randomizer();">Randomize</button>';
 		$('#content').html(inputer);
 
 		$.mobile.activePage.trigger('create');
