@@ -17,11 +17,13 @@
  * under the License.
  */
 var app = {
+	
+	
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-
-		this.checkConnection();
+		window.connectionState = null;
+		this.randomizer();
 	},
 
 
@@ -38,8 +40,19 @@ var app = {
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
 		$( '#library' ).bind( "taphold", this.resetLibrary );
+		document.addEventListener("offline", this.offline, false);
+		document.addEventListener("online", this.online, false);
 	},
 
+
+ 	offline : function(){
+ 		 connectionState = "NONE";
+ 	},
+ 	
+ 	online : function() {
+ 		connectionState = "ON"
+ 		
+ 	},
 	// deviceready Event Handler
 	//
 	// The scope of `this` is the event. In order to call the `receivedEvent`
@@ -62,10 +75,11 @@ var app = {
 	},
 
 	
-	randomizer : function(connectionState) {
+	randomizer : function() {
 		
 		if(connectionState === 'NONE') {
 			app.library();
+			alert(connectionState);
 		} else {
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 
@@ -257,7 +271,8 @@ var app = {
 	},
 
 	library : function() {
-Storage.prototype.getObject = function(key) {
+			
+			Storage.prototype.getObject = function(key) {
 				var value = this.getItem(key);
 				return value && JSON.parse(value);
 			};
@@ -288,22 +303,6 @@ Storage.prototype.getObject = function(key) {
 		}
 	},
 	
-	
-	checkConnection : function() {
-    var networkState = navigator.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
-	alert(networkState);
-    randomizer(networkState);
-},
 
 
 	encode : function() {
