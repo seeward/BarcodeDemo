@@ -50,14 +50,13 @@ var app = {
 		
 		document.addEventListener('online', this.checkConnection, false);
 		document.addEventListener('offline', this.checkConnection, false);
-	},
-	
-	checkConnection : function() {
-		var connCheck = setInterval(function() {
+			var connCheck = setInterval(function() {
 			
 			checkConnection();
 		}, 1000);
 	},
+	
+
 	
 	
 	checkConnection : function(){
@@ -231,7 +230,11 @@ var app = {
 	},
 
 
-
+	test : function () {
+		
+		
+	},
+	
 	manual : function() {
 		search = $('#isbn').val();
 
