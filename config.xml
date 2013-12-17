@@ -19,6 +19,10 @@
     <feature name="debug-server" required="true">
        <param name="domain" value="http://debug.phonegap.com"/>
        <param name="key" value="willoughby"/>
+            <feature name="NetworkStatus">
+    <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+     <param name="ios-package" value="CDVConnection" />
+
     </feature>
 
     <preference name="phonegap-version" value="3.1.0" />
@@ -56,4 +60,8 @@
     <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
     
      <access origin="*"/> 
+     
+
+
+
 </widget>

@@ -24,6 +24,9 @@ var app = {
 		this.randomizer();
 	},
 
+
+
+
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
@@ -34,7 +37,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
-
+		$( '#library' ).bind( "taphold", this.resetLibrary );
 	},
 
 	// deviceready Event Handler
@@ -43,6 +46,11 @@ var app = {
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
+	},
+	
+	resetLibrary : function() {
+		window.localStorage.removeItem('books');
+		this.library();
 	},
 
 	enterISBN : function() {
@@ -53,8 +61,12 @@ var app = {
 		$.mobile.activePage.trigger('create');
 	},
 
+	
 	randomizer : function() {
-
+		app.checkConnection();
+		if(networkState === 'NONE') {
+			app.library();
+		} else {
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 
 		$.ajax({//call to login webservice
@@ -90,6 +102,8 @@ var app = {
 			$.mobile.activePage.trigger('create');
 
 		});
+		
+		}
 
 	},
 	// Update DOM on a Received Event
@@ -245,6 +259,8 @@ var app = {
 	library : function() {
 
 		$('#content').html("<img src='css/ajax-loader.gif'>");
+		
+		if(window.localStorage.getObject('books') === null) {
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/books_app.php",
 			type : "GET",
@@ -262,7 +278,30 @@ var app = {
 
 			app.displayBooks();
 		});
+		}
+		else {
+			app.displayBooks();
+		}
 	},
+	
+	
+	checkConnection : function() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    return networkState;
+},
+
+
 	encode : function() {
 		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
