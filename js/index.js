@@ -23,10 +23,25 @@ var app = {
 		var currentType;
 		var intCheck = 0;
 		this.randomizer();
+		checkConnection();
 	},
 
 
+      checkConnection : function() {
+            var networkState = navigator.connection.type;
 
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+
+            alert('Connection type: ' + states[networkState]);
+       },
 
 	// Bind Event Listeners
 	//
@@ -217,7 +232,7 @@ var app = {
 	},
 
 	displayBooks : function() {
-		
+			$('#content').html("<img src='css/ajax-loader.gif'>");
 		Storage.prototype.getObject = function(key) {
 			var value = this.getItem(key);
 			return value && JSON.parse(value);
@@ -227,8 +242,8 @@ var app = {
 		var template = $('#libraryList').html();
 
 		var html = Mustache.to_html(template, library);
-		$('#content').hide();
-		$('#content').html(html).fadeIn('slow');
+		
+		$('#content').html(html);
 		$.mobile.activePage.trigger('create');
 
 	},
