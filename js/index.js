@@ -217,7 +217,7 @@ var app = {
 	},
 
 	displayBooks : function() {
-		$('#content').hide();
+		
 		Storage.prototype.getObject = function(key) {
 			var value = this.getItem(key);
 			return value && JSON.parse(value);
@@ -227,6 +227,7 @@ var app = {
 		var template = $('#libraryList').html();
 
 		var html = Mustache.to_html(template, library);
+		$('#content').hide();
 		$('#content').html(html).fadeIn('slow');
 		$.mobile.activePage.trigger('create');
 
