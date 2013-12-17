@@ -95,7 +95,10 @@
         </li>
         <li><textarea id="commentText"></textarea></li>
         <li><a onClick="app.comment({{ID}});">Add a Comment</a></li>
-        
+        <li><input type="text" id="checkedname"></input></li>
+        	<li><a onClick="app.checkout({{ID}});">Check Out</a>
+        </li>
+        <li><p>Checked Out to: </p>{{CHECKEDNAME}}</li>
 		{{/item}}
 			</ul>
 		<a data-role="button" data-theme="c" id="backer" onClick="app.displayBooks();">Back to Library</a>

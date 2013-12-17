@@ -74,7 +74,43 @@ var app = {
 		window.localStorage.removeItem('books');
 		app.library();
 	},
+	
+	checkout : function(id) {
+		
+		checkedname = $('#checkedname').val();
+		
+		$.ajax({//call to login webservice
+			url : "http://www.seeward.com/app_books_checkout.php",
+			type : "GET",
+			dataType : 'html',
+			data : {
+				id : id,
+				checkedname : checkedname
+				
+			},
 
+		}).done(function(response) {//success
+		alert(response);
+		app.resetLibrary();
+		});
+	},
+
+	checkin : function(id) {
+	
+		$.ajax({//call to login webservice
+			url : "http://www.seeward.com/random.php",
+			type : "GET",
+			dataType : 'html',
+			data : {
+				id : id
+			},
+
+		}).done(function(response) {//success
+			
+		});
+		
+	},
+	
 	enterISBN : function() {
 		$('#content').empty();
 		inputer = '<input type="tel" autocomplete="off" name="isbn" id="isbn"></input><p><button href="#" data-role="button" data-theme="a" onClick="app.manual();" id="searcher">Search</button></p><a data-role="button" onClick="app.resetLibrary();" data-theme="a">Reset Library</a><button href="#" data-role="button" data-icon="grid" onClick="app.randomizer();">Randomize</button>';
