@@ -38,7 +38,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
-		document.getElementById('reset').addEventListener('click', this.resetLibrary, false);
+		//document.getElementById('reset').addEventListener('click', this.resetLibrary, false);
 	},
 
 	// deviceready Event Handler
