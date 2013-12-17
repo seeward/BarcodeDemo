@@ -29,7 +29,7 @@ var app = {
 
       checkConnection : function() {
             var networkState = navigator.connection.type;
-
+			alert('CheckConnectionFunction')
             var states = {};
             states[Connection.UNKNOWN]  = 'Unknown connection';
             states[Connection.ETHERNET] = 'Ethernet connection';
@@ -61,7 +61,7 @@ var app = {
 	// The scope of `this` is the event. In order to call the `receivedEvent`
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
-		app.receivedEvent('deviceready');
+		alert('deviceready');
 		app.checkConnection();
 	},
 	
