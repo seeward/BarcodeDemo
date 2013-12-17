@@ -23,7 +23,7 @@ var app = {
 		var currentType;
 		var intCheck = 0;
 		this.randomizer();
-		this.checkConnection();
+		
 	},
 
 
@@ -62,7 +62,7 @@ var app = {
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
-		
+		app.checkConnection();
 	},
 	
 
