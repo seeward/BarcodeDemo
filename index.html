@@ -88,6 +88,12 @@
         <li>
         	<a href="http://books.google.co.za/books/about/Jesus_the_Model.html?hl=&id={{THUMB}}" target="_blank">Google Books Link</a>
         </li>
+        <li>
+        	<p>Comment: </p>{{COMMENTS}}
+        </li>
+        <li><textarea id="commentText"></textarea></li>
+        <li><a onClick="app.comment({{ID}});">Add a Comment</a></li>
+        
 		{{/item}}
 			</ul>
 		<a data-role="button" data-theme="c" id="backer" onClick="app.displayBooks();">Back to Library</a>
@@ -95,7 +101,10 @@
 	</script>
 
 
-
+	
+        <script type="text/javascript">
+            app.initialize();
+        </script>
        
     </body>
 </html>

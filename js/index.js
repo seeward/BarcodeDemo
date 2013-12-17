@@ -20,7 +20,7 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		this.checkConnection();
+	
 		this.randomizer();
 		
 	},
@@ -44,8 +44,8 @@ var app = {
 	// The scope of `this` is the event. In order to call the `receivedEvent`
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
-		app.initialize();
 		
+		app.checkConnection();
 	},
 	
 
@@ -202,9 +202,21 @@ var app = {
 	},
 
 
-	test : function () {
-		
-		
+	comment : function(id) {
+		commentText = $('#commentText').val();
+		$.ajax({//call to login webservice
+			url : "https://www.seeward.com/book_app_comment.php",
+			type : "GET",
+			dataType : 'json',
+			data: {
+				id : id,
+				comment : commentText
+			},
+
+		}).done(function(response) {//success
+			
+			alert(response);
+		});
 	},
 	
 	manual : function() {
@@ -309,9 +321,5 @@ var app = {
 	
 
 
-	encode : function() {
-		
-
-	}
 };
 
