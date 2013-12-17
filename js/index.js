@@ -22,7 +22,7 @@ var app = {
 		this.bindEvents();
 		var currentType;
 		var intCheck = 0;
-		this.randomizer();
+		this.library();
 	},
 
 
@@ -38,7 +38,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
-		$( '#library' ).bind( "taphold", this.resetLibrary );
+		
 	},
 
 	// deviceready Event Handler
@@ -48,54 +48,12 @@ var app = {
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
 		
-		document.addEventListener('online', this.checkConnection, false);
-		document.addEventListener('offline', this.checkConnection, false);
-			var connCheck = setInterval(function() {
-			
-			checkConnection();
-		}, 1000);
 	},
 	
 
 	
 	
-	checkConnection : function(){
-		var objConnection = navigator.network.connection;
-		
-		
-		if(objConnection.type = 'NONE') {
-			alert("no connection");
-		}
-		 
-	},
-	
-	getConnectionType : function(type) {
-			var commTypes = {};
-			connTypes[Connection.NONE] = {
-				value : 0
-			};
-			connTypes[Connection.UNKNOWN] = {
-				value : 1
-			};
-			connTypes[Connection.ETHERNET] = {
-				value : 2
-			};
-			connTypes[Connection.CELL_2G] = {
-				value : 3
-			};
-		connTypes[Connection.CELL_3G] = {
-				value : 4
-			};
-		connTypes[Connection.CELL_4G] = {
-				value : 5
-			};
-			connTypes[Connection.WIFI] = {
-				value : 6
-			};
 
-		return connTyped[type];
-		
-	},
 	
 	
 	resetLibrary : function() {
