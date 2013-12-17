@@ -23,7 +23,7 @@ var app = {
 		var currentType;
 		var intCheck = 0;
 		this.randomizer();
-		checkConnection();
+		this.checkConnection();
 	},
 
 
