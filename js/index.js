@@ -21,7 +21,7 @@ var app = {
 	initialize : function() {
 		this.bindEvents();
 
-		this.randomizer();
+		this.checkConnection();
 	},
 
 
@@ -62,9 +62,9 @@ var app = {
 	},
 
 	
-	randomizer : function() {
-		app.checkConnection();
-		if(networkState === 'NONE') {
+	randomizer : function(connectionState) {
+		
+		if(connectionState === 'NONE') {
 			app.library();
 		} else {
 		$('#content').html("<img src='css/ajax-loader.gif'>");
@@ -301,8 +301,8 @@ Storage.prototype.getObject = function(key) {
     states[Connection.CELL_4G]  = 'Cell 4G connection';
     states[Connection.CELL]     = 'Cell generic connection';
     states[Connection.NONE]     = 'No network connection';
-
-    return networkState;
+	alert(networkState);
+    randomizer(networkState);
 },
 
 
