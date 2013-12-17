@@ -20,7 +20,8 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-
+		var currentType;
+		var intCheck = 0;
 		this.randomizer();
 	},
 
@@ -46,7 +47,58 @@ var app = {
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
+		
+		document.addEventListener('online', this.checkConnection, false);
+		document.addEventListener('offline', this.checkConnection, false);
 	},
+	
+	checkConnection : function() {
+		var connCheck = setInterval(function() {
+			
+			checkConnection();
+		}, 1000);
+	},
+	
+	
+	checkConnection : function(){
+		var objConnection = navigator.network.connection;
+		var connectionInfo = getConnectionType(objConnection.type);
+		var statusMessage = connectionInfo.message;
+		
+		if(connectionInfo.value === 0) {
+			alert("no connection");
+		}
+		 
+	},
+	
+	getConnectionType : function(type) {
+			var commTypes = {};
+			connTypes[Connection.NONE] = {
+				value : 0
+			};
+			connTypes[Connection.UNKNOWN] = {
+				value : 1
+			};
+			connTypes[Connection.ETHERNET] = {
+				value : 2
+			};
+			connTypes[Connection.CELL_2G] = {
+				value : 3
+			};
+		connTypes[Connection.CELL_3G] = {
+				value : 4
+			};
+		connTypes[Connection.CELL_4G] = {
+				value : 5
+			};
+			connTypes[Connection.WIFI] = {
+				value : 6
+			};
+
+		return connTyped[type];
+		
+	},
+	
 	
 	resetLibrary : function() {
 		window.localStorage.removeItem('books');
@@ -72,7 +124,7 @@ var app = {
 			dataType : 'json',
 
 		}).done(function(response) {//success
-
+			$('#content').hide();
 			Storage.prototype.setObject = function(key, value) {
 				this.setItem(key, JSON.stringify(value));
 			};
@@ -95,7 +147,8 @@ var app = {
 			var template = $('#detailList').html();
 
 			var html = Mustache.to_html(template, all);
-			$('#content').html(html);
+			$('#content').html(html).fadeIn('slow');
+			
 			$.mobile.activePage.trigger('create');
 
 		});
@@ -208,7 +261,7 @@ var app = {
 	},
 
 	displayBooks : function() {
-
+		$('#content').hide();
 		Storage.prototype.getObject = function(key) {
 			var value = this.getItem(key);
 			return value && JSON.parse(value);
@@ -218,7 +271,7 @@ var app = {
 		var template = $('#libraryList').html();
 
 		var html = Mustache.to_html(template, library);
-		$('#content').html(html);
+		$('#content').html(html).fadeIn('slow');
 		$.mobile.activePage.trigger('create');
 
 	},
