@@ -257,7 +257,11 @@ var app = {
 	},
 
 	library : function() {
-
+Storage.prototype.getObject = function(key) {
+				var value = this.getItem(key);
+				return value && JSON.parse(value);
+			};
+			
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 		
 		if(window.localStorage.getObject('books') === null) {
