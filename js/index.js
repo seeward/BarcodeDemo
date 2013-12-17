@@ -217,7 +217,7 @@ var app = {
 	},
 
 	displayBooks : function() {
-		$('#content').hide();
+		
 		Storage.prototype.getObject = function(key) {
 			var value = this.getItem(key);
 			return value && JSON.parse(value);
@@ -227,6 +227,7 @@ var app = {
 		var template = $('#libraryList').html();
 
 		var html = Mustache.to_html(template, library);
+		$('#content').hide();
 		$('#content').html(html).fadeIn('slow');
 		$.mobile.activePage.trigger('create');
 
@@ -295,13 +296,7 @@ var app = {
 
 
 	encode : function() {
-		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-		scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-			alert("encode success: " + success);
-		}, function(fail) {
-			alert("encoding failed: " + fail);
-		});
+		
 
 	}
 };
