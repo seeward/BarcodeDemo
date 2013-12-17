@@ -17,12 +17,10 @@
  * under the License.
  */
 var app = {
-	
-	
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		
+
 		this.randomizer();
 	},
 
@@ -40,19 +38,8 @@ var app = {
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
 		$( '#library' ).bind( "taphold", this.resetLibrary );
-		document.addEventListener("offline", this.offline, false);
-		document.addEventListener("online", this.online, false);
 	},
 
-
- 	offline : function(){
- 		 window.connectionState = "NONE";
- 	},
- 	
- 	online : function() {
- 		window.connectionState = "ON"
- 		
- 	},
 	// deviceready Event Handler
 	//
 	// The scope of `this` is the event. In order to call the `receivedEvent`
@@ -77,10 +64,6 @@ var app = {
 	
 	randomizer : function() {
 		
-		if(window.connectionState === 'NONE') {
-			app.library();
-			alert(connectionState);
-		} else {
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 
 		$.ajax({//call to login webservice
@@ -117,7 +100,7 @@ var app = {
 
 		});
 		
-		}
+	
 
 	},
 	// Update DOM on a Received Event
@@ -271,12 +254,7 @@ var app = {
 	},
 
 	library : function() {
-			
-			Storage.prototype.getObject = function(key) {
-				var value = this.getItem(key);
-				return value && JSON.parse(value);
-			};
-			
+
 		$('#content').html("<img src='css/ajax-loader.gif'>");
 		
 		if(window.localStorage.getObject('books') === null) {
@@ -302,6 +280,8 @@ var app = {
 			app.displayBooks();
 		}
 	},
+	
+	
 	
 
 
