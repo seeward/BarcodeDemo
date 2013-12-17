@@ -62,10 +62,9 @@ var app = {
 	
 	checkConnection : function(){
 		var objConnection = navigator.network.connection;
-		var connectionInfo = getConnectionType(objConnection.type);
-		var statusMessage = connectionInfo.message;
 		
-		if(connectionInfo.value === 0) {
+		
+		if(objConnection.type = 'NONE') {
 			alert("no connection");
 		}
 		 
@@ -232,11 +231,7 @@ var app = {
 	},
 
 
-	test : function () {
-		
-		
-	},
-	
+
 	manual : function() {
 		search = $('#isbn').val();
 
