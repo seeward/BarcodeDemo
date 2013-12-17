@@ -266,7 +266,10 @@ var app = {
 	library : function() {
 
 		$('#content').html("<img src='css/ajax-loader.gif'>");
-		
+		Storage.prototype.getObject = function(key) {
+			var value = this.getItem(key);
+			return value && JSON.parse(value);
+		};
 		if(window.localStorage.getObject('books') === null) {
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/books_app.php",
