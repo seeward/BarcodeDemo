@@ -20,28 +20,11 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		var currentType;
-		var intCheck = 0;
+	
 		this.randomizer();
 		
 	},
 
-
-      checkConnection : function() {
-            var networkState = navigator.connection.type;
-			alert('CheckConnectionFunction')
-            var states = {};
-            states[Connection.UNKNOWN]  = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI]     = 'WiFi connection';
-            states[Connection.CELL_2G]  = 'Cell 2G connection';
-            states[Connection.CELL_3G]  = 'Cell 3G connection';
-            states[Connection.CELL_4G]  = 'Cell 4G connection';
-            states[Connection.CELL]     = 'Cell generic connection';
-            states[Connection.NONE]     = 'No network connection';
-
-            alert('Connection type: ' + states[networkState]);
-       },
 
 	// Bind Event Listeners
 	//
@@ -61,12 +44,28 @@ var app = {
 	// The scope of `this` is the event. In order to call the `receivedEvent`
 	// function, we must explicity call `app.receivedEvent(...);`
 	onDeviceReady : function() {
-		alert('deviceready');
+		
 		app.checkConnection();
 	},
 	
 
 	
+      checkConnection : function() {
+            var networkState = navigator.network.connection.type;
+			
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+			alert(networkState);
+            alert('Connection type: ' + states[networkState]);
+       },
+
 	
 
 	
