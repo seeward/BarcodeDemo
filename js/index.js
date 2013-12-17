@@ -22,7 +22,7 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		window.connectionState = null;
+		
 		this.randomizer();
 	},
 
@@ -46,11 +46,11 @@ var app = {
 
 
  	offline : function(){
- 		 connectionState = "NONE";
+ 		 window.connectionState = "NONE";
  	},
  	
  	online : function() {
- 		connectionState = "ON"
+ 		window.connectionState = "ON"
  		
  	},
 	// deviceready Event Handler
@@ -77,7 +77,7 @@ var app = {
 	
 	randomizer : function() {
 		
-		if(connectionState === 'NONE') {
+		if(window.connectionState === 'NONE') {
 			app.library();
 			alert(connectionState);
 		} else {
