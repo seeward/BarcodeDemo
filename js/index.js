@@ -38,7 +38,7 @@ var app = {
 		document.getElementById('add').addEventListener('click', this.add, false);
 		document.getElementById('manual').addEventListener('click', this.enterISBN, false);
 		document.getElementById('library').addEventListener('click', this.library, false);
-		$( '#library' ).bind( "taphold", this.resetLibrary );
+		document.getElementById('reset').addEventListener('click', this.resetLibrary, false);
 	},
 
 	// deviceready Event Handler
@@ -58,7 +58,7 @@ var app = {
 	
 	resetLibrary : function() {
 		window.localStorage.removeItem('books');
-		this.library();
+		app.library();
 	},
 
 	enterISBN : function() {
