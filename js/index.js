@@ -78,14 +78,15 @@ var app = {
 	checkout : function(id) {
 		
 		checkedname = $('#checkedname').val();
-		
+		title = document.getElementById("titleTxt").innerHTML;
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/app_books_checkout.php",
 			type : "GET",
 			dataType : 'html',
 			data : {
 				id : id,
-				checkedname : checkedname
+				checkedname : checkedname,
+				title : title
 				
 			},
 
