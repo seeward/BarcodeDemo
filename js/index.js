@@ -98,7 +98,7 @@ var app = {
 	checkin : function(id) {
 	
 		$.ajax({//call to login webservice
-			url : "http://www.seeward.com/random.php",
+			url : "http://www.seeward.com/app_books_checkin.php",
 			type : "GET",
 			dataType : 'html',
 			data : {
@@ -106,8 +106,21 @@ var app = {
 			},
 
 		}).done(function(response) {//success
-			
+		alert(response);
+		app.resetLibrary();
 		});
+		
+	},
+	
+	showoptions : function() {
+		
+		if ($('#checkboxOpt').is(":checked")) {
+				$('#options').show();
+				$.mobile.activePage.trigger('create');
+				
+			} else {
+				$('#options').hide();
+			}
 		
 	},
 	
@@ -154,7 +167,7 @@ var app = {
 
 			var html = Mustache.to_html(template, all);
 			$('#content').html(html).fadeIn('slow');
-			
+			$('#options').hide();
 			$.mobile.activePage.trigger('create');
 
 		});

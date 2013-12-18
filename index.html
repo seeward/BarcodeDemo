@@ -24,6 +24,8 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Library</title>
+        
+      
     </head>
     <body>
         <div class="app" data-role="page">
@@ -92,13 +94,25 @@
         </li>
         <li>
         	<p>Comment: </p>{{COMMENTS}}
-        </li>
+        </li> </ul>
+        		<label for="checkboxOpt">Show Options</label>
+
+        	<input type="checkbox" onChange="app.showoptions();" name="checkboxOpt" id="checkboxOpt" class="custom" />
+       
+       
+      
+        <div id="options">
+        	<ul data-role="listview" data-inset="true">
         <li><textarea id="commentText"></textarea></li>
         <li><a onClick="app.comment({{ID}});">Add a Comment</a></li>
         <li><input type="text" id="checkedname"></input></li>
         	<li><a onClick="app.checkout({{ID}});">Check Out</a>
         </li>
         <li><p>Checked Out to: </p>{{CHECKEDNAME}}</li>
+        <li>
+        	<a onClick="app.checkin({{ID}})">Check In</a>
+        </li>
+        </div>
 		{{/item}}
 			</ul>
 		<a data-role="button" data-theme="c" id="backer" onClick="app.displayBooks();">Back to Library</a>
