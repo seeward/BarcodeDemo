@@ -16,8 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
 	// Application Constructor
+
 	initialize : function() {
 		this.bindEvents();
 	
@@ -267,7 +270,7 @@ var app = {
 			
 			alert(response);
 			
-			app.library();
+			app.resetLibrary();
 			
 		});
 	},
@@ -339,7 +342,7 @@ var app = {
 		var html = Mustache.to_html(template, all);
 		$('#content').html(html);
 		$.mobile.activePage.trigger('create');
-
+			  $('#options').hide();
 	},
 
 	library : function() {
@@ -369,10 +372,6 @@ var app = {
 			app.displayBooks();
 		}
 	},
-	
-	
-	
-
 
 };
 
