@@ -23,12 +23,49 @@ var app = {
 
 	initialize : function() {
 		this.bindEvents();
-	
-		this.randomizer();
-		
+		//this.randomizer();
+		this.updated();
 	},
 
+	updated : function() {
+		
+	
+		
+	
+		
+		$.ajax({//call to login webservice
+			url : "http://www.seeward.com/updated.php",
+			type : "GET",
+			dataType : 'json',
 
+		}).done(function(response) {//success
+			
+			Storage.prototype.getObject = function(key) {
+			var value = this.getItem(key);
+			return value && JSON.parse(value);
+		};
+			lib = window.localStorage.getObject('books');
+		
+			if (lib != null){
+			$.each(lib.items, function(i, obj) {
+				if (obj.ISBN === response.ISBN) {
+					
+					if(obj.UPDATEDON < response.UPDATEDON){
+						app.resetLibrary();
+					} else {
+						app.library();
+					}
+					
+				} 
+
+					
+			});
+			} else {
+				app.library();
+			}
+		});
+		
+	},
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
