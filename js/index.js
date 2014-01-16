@@ -28,11 +28,7 @@ var app = {
 	},
 
 	updated : function() {
-		
 	
-		
-	
-		
 		$.ajax({//call to login webservice
 			url : "http://www.seeward.com/updated.php",
 			type : "GET",
