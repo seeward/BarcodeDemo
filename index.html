@@ -6,16 +6,16 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Library</title>
-        
-      
+        <title>Library v2</title>
+
+
     </head>
     <body>
         <div class="app" data-role="page">
-        	
+
         	<div data-role="header" data-position="fixed" style="overflow:hidden;padding-bottom:15px!important">
     <h1>Book Library</h1>
-    
+
         	<div data-role="navbar" data-grid="c">
     <ul>
         <li><button href="#" data-role="button" data-icon="star" id="scan">Scan</button></li>
@@ -25,7 +25,7 @@
     </ul>
 </div><!-- /navbar -->
 </div><!-- /header -->
-            
+
             <div id="enterISBN"></div>
             <div id="example-wrapper" data-iscroll align="center">
           <div id="content"><img src='css/ajax-loader.gif'></div>
@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="js/jquery.mobile-1.3.1.css" />
 		<script src="js/jquery.mobile-1.3.1.min.js"></script>
                 <script type="text/javascript" src="js/mustache.js"></script>
-            
+
 	<script src="js/iscroll.js"></script>
 
 
@@ -54,7 +54,7 @@
 		{{/items}}
 		</ul>
 	</script>
-	
+
 	<script type="text/mustacheTemplate" id="detailList">
 
 		<ul data-role="listview" data-inset="true" id="bookDetail">
@@ -66,7 +66,7 @@
         <li>
             {{AUTHOR}}
         </li>
-        
+
         <li>
         	{{DESCRIPTION}}
         </li>
@@ -83,9 +83,9 @@
         		<label for="checkboxOpt">Show Options</label>
 
         	<input type="checkbox" onChange="app.showoptions();" name="checkboxOpt" id="checkboxOpt" class="custom" />
-       
-       
-      
+
+
+
         <div id="options">
         	<ul data-role="listview" data-inset="true">
         <li><textarea id="commentText"></textarea></li>
@@ -101,15 +101,15 @@
 		{{/item}}
 			</ul>
 		<a data-role="button" data-theme="c" id="backer" onClick="app.displayBooks();">Back to Library</a>
-	
+
 	</script>
 
 
-	
+
         <script type="text/javascript">
-      
+
             app.initialize() ;
         </script>
-       
+
     </body>
 </html>
